@@ -40,6 +40,7 @@ Protocol::Protocol(const char* device, uint32_t baudrate)
   this->serialDevice = new STM32F4;
   this->threadHandle = new STM32F4DataGuard;
 #elif defined(__linux__)
+  DSTATUS("(Linux) Open Protocol implementation with increased timeouts");
   this->serialDevice = new LinuxSerialDevice(device, baudrate);
   this->threadHandle = new PosixThreadManager();
 #endif
@@ -498,7 +499,7 @@ Protocol::receive()
   //! Run the readPoll until you get a true
   // @todo might need to modify to include thread stopCond
   while (!stopCond && !readPoll(&receiveFrame)) {
-      usleep(10);
+      usleep(100);
   }
   //! When we receive a true, return a copy of container to the caller: this is
   //! the 'receive' interface
