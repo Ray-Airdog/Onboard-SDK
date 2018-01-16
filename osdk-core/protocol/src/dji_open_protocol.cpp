@@ -24,6 +24,7 @@ Protocol::Protocol(const char* device, uint32_t baudrate)
 
 //! Step 1.1: Instantiate a hardware driver as per OS
 #ifdef QT
+  DSTATUS("(Qt) Open Protocol implementation");
   QThread* serialEventThread = new QThread;
   QHardDriver* driver = new QHardDriver(0, device, baudrate);
   driver->moveToThread(serialEventThread);

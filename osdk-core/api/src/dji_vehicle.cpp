@@ -947,6 +947,7 @@ Vehicle::activate(ActivateData* data, int timeout)
   accountData          = *data;
   accountData.reserved = 2;
 
+  DSTATUS("--- OPEN PROTOCOL TEST VERSION ---");
   for (int i             = 0; i < 32; ++i)
     accountData.iosID[i] = '0'; //! @note for ios verification
   DSTATUS("version 0x%X\n", versionData.fwVersion);
